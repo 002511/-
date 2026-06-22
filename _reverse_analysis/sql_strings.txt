@@ -1,0 +1,297 @@
+﻿                             WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?1)
+                        ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, datetime('now', 'localtime'), datetime('now', 'localtime'))UPDATE chapter_stage_status SET status = ?1, updated_at = datetime('now', 'localtime')
+                     ON CONFLICT(chapter_id, stage) DO UPDATE SET
+                     SELECT 1 FROM chapter_stage_status css 
+                     updated_at = datetime('now', 'localtime') WHERE chapter_id = ?2 AND stage = ?3UPDATE chapters SET summary = ?1, needs_rewrite = ?2, updated_at = datetime('now', 'localtime') WHERE id = ?3SELECT COUNT(*) > 0 FROM chapter_rewrite_reasons WHERE chapter_id = ?1INSERT INTO chapter_rewrite_reasons (id, chapter_id, type, rewrite_suggestion) VALUES (?1, ?2, ?3, ?4)UPDATE chapter_rewrite_reasons SET type = ?1, rewrite_suggestion = ?2 WHERE chapter_id = ?3
+                     updated_at = datetime('now', 'localtime') WHERE chapter_id = ?3 AND stage = ?4SELECT ai_config FROM projects WHERE id = ?1SELECT max_tokens FROM ai_models WHERE id = ?1SELECT css.chapter_id, c.title FROM chapter_stage_status css
+                     updated_at = excluded.updated_atINSERT INTO chapters (
+                     VALUES (?1, ?2, ?3, ?4)UPDATE chapter_stage_status SET status = ?1, 
+                     VALUES (?1, ?2, ?3, ?4, ?5)UPDATE chapter_stage_status SET status = ?1, error_info = ?2, 
+                     WHERE c.project_id = ?1 AND css.status = 'running'completedUPDATE projects SET current_stage = ?1, status = '', updated_at = datetime('now', 'localtime') WHERE id = ?2
+                     WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?1)
+                     WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?2) AND status = ?3SELECT status, current_stage FROM projects WHERE id = ?1SELECT current_stage FROM projects WHERE id = ?1UPDATE projects SET current_stage = ?1, updated_at = datetime('now', 'localtime') WHERE id = ?2SELECT c.id, c.`index`, c.title, COALESCE(css.status, ?2) as stage_status
+                 )SELECT id, `index`, title FROM chapters WHERE project_id = ?1 ORDER BY `index`createopenmkdirread_text_file_linesremoverenamestatlstatfstatexistssize
+                 )SELECT id, `index`, title, needs_rewrite FROM chapters 
+                 AND stage = ?3 AND status = ?4INSERT INTO project_errors (id, stage, message, code, retryable, timestamp)
+                 AND status = ?3UPDATE projects SET status = ?1, updated_at = datetime('now', 'localtime') WHERE id = ?2UPDATE chapter_stage_status SET status = ?1, updated_at = datetime('now', 'localtime') WHERE status = ?2UPDATE projects SET status = ?1, updated_at = datetime('now', 'localtime') WHERE status = ?2SELECT output_path, name FROM projects WHERE id = ?1SELECT COUNT(*) FROM chapters WHERE project_id = ?1SELECT c.id, c."index", c.title, c.word_count
+                 FROM book_metadata WHERE project_id = ?1SELECT name, output_path FROM projects WHERE id = ?1SELECT "index", title
+                 FROM project_custom_prompts WHERE id = ?1SELECT custom_prompts_id, name FROM projects WHERE id = ?1
+                 ORDER BY "index"SELECT id FROM chapters WHERE project_id = ?1
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)DELETE FROM chapter_errors WHERE id IN (
+                 VALUES (?1, ?2, datetime('now', 'localtime'))SELECT summary_prompt, rewrite_prompt, identify_prompt, breakthrough_prompt 
+                 WHERE c.id = ?1 AND c.project_id = ?2SELECT id, "index", title, word_count
+                 WHERE c.project_id = ?1 AND css.stage = ?2 AND css.status = ?3UPDATE chapter_stage_status SET status = ?1, updated_at = datetime('now', 'localtime')
+                 WHERE chapter_id = ?1 AND stage = ?2INSERT INTO chapter_stage_status (id, chapter_id, stage, status) 
+                 WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?1)
+                 WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?2)
+                 WHERE project_id = ?1 ORDER BY `index`SELECT output_path FROM projects WHERE id = ?1SELECT summary IS NOT NULL AND summary != '' FROM chapters WHERE id = ?1SELECT c.id, c.title FROM chapters c 
+                ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)SELECT c.id, c.title FROM chapters c 
+                SELECT error_id FROM chapters WHERE project_id = ?1 AND error_id IS NOT NULL
+             AND stage = ?3SELECT * FROM chapter_stage_status WHERE chapter_id IN () ORDER BY chapter_id, stage ASC
+             AND stage = ?4SELECT * FROM chapter_stage_status WHERE chapter_id = ?1 AND stage = ?2UPDATE chapter_stage_status
+             ON CONFLICT(chapter_id, stage) DO UPDATE SET
+             ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_atSELECT * FROM projects WHERE id = ?1SELECT error_info_id FROM projects WHERE id = ?1DELETE FROM project_errors WHERE id = ?1UPDATE projects SET error_info_id = NULL, updated_at = ?1 WHERE id = ?2pendingrunningcompletederrorSELECT * FROM project_custom_prompts WHERE id = ?1INSERT INTO project_custom_prompts (id, summary_prompt, rewrite_prompt, identify_prompt, breakthrough_prompt)
+             ORDER BY "index"SELECT COUNT(*) FROM chapter_stage_status css 
+             ORDER BY "index"SELECT name, book_path, output_path, source_format FROM projects WHERE id = ?1SELECT title, author, language, publisher, description 
+             ORDER BY timestamp DESC LIMIT ?2SELECT * FROM messages WHERE conversation_id = ?1 ORDER BY timestamp ASC LIMIT 
+             PRAGMA busy_timeout = 5000;SELECT COUNT(*) > 0 FROM chapter_stage_status WHERE chapter_id = ?1 AND stage = ?2
+             VALUES (?1, ?2, ?3, ?4)UPDATE chapters SET error_id = ?1, updated_at = datetime('now', 'localtime') WHERE id = ?2UPDATE chapter_stage_status 
+             VALUES (?1, ?2, ?3, ?4, ?5)DELETE FROM conversations WHERE id = ?1name = ?
+             VALUES (?1, ?2, ?3, ?4, ?5)DELETE FROM project_custom_prompts WHERE id = ?1UPDATE project_custom_prompts SET 
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6)UPDATE projects SET status = '', error_info_id = ?1, updated_at = ?2 WHERE id = ?3
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)DELETE FROM prompt_templates WHERE id = ?1name = ?
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)DELETE FROM ai_models WHERE id = ?1provider = ?
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)DELETE FROM projects WHERE id = ?1name = ? 
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, datetime('now', 'localtime'), datetime('now', 'localtime'))INSERT INTO chapters (id, project_id, "index", title, original_href, word_count, status, created_at, updated_at)
+             VALUES (?1, ?2, ?3, ?4, 0, ?5)UPDATE projects SET error_info_id = ?1, status = ?2, updated_at = datetime('now', 'localtime')
+             WHERE c.id = ?1 AND c.project_id = ?2SELECT "index", title FROM chapters WHERE id = ?1 AND project_id = ?2UPDATE chapters SET needs_rewrite = 1, updated_at = datetime('now', 'localtime')
+             WHERE chapter_id = ?3 AND stage = ?4UPDATE projects SET error_info_id = NULL, updated_at = datetime('now', 'localtime') WHERE id = ?1UPDATE projects SET status = ?1, started_at = datetime('now', 'localtime'), updated_at = datetime('now', 'localtime') WHERE id = ?2UPDATE chapter_stage_status SET status = ?1, updated_at = datetime('now', 'localtime')
+             WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?1)src\repositories\project.rs
+             WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?1)UPDATE chapter_stage_status
+             WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?2)
+             WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?3)
+             WHERE id = ?1 AND project_id = ?2SELECT "index", title FROM chapters WHERE project_id = ?1 ORDER BY "index"SELECT c.id, c."index", c.title
+             WHERE id = ?3INSERT INTO chapter_errors (id, message, code, timestamp)
+             WHERE project_id = ?2,SELECT * FROM chapter_errors WHERE id IN ()
+             WHERE project_id = ?2DELETE FROM chapters WHERE project_id = ?1UPDATE chapters SET needs_rewrite = ?1, updated_at = ?2 WHERE id = ?3UPDATE chapters SET summary = NULL, needs_rewrite = 0, updated_at = ?1
+            )UPDATE chapters SET error_id = NULL, updated_at = ?1
+         SELECT project_id, title, author, publisher, language, description, total_chapters, COALESCE(total_words, 0), file_size, cover_image
+      // if this value changes, make sure to update it in:
+ severalbecomesselect wedding00.htmlmonarchoff theteacherhighly biologylife ofor evenrise of&raquo;plusonehunting(thoughDouglasjoiningcirclesFor theAncientVietnamvehiclesuch ascrystalvalue =Windowsenjoyeda smallassumed<a id="foreign All rihow theDisplayretiredhoweverhidden;battlesseekingcabinetwas notlook atconductget theJanuaryhappensturninga:hoverOnline French lackingtypicalextractenemieseven ifgeneratdecidedare not/searchbeliefs-image:locatedstatic.login">convertviolententeredfirst">circuitFinlandchemistshe was10px;">as suchdivided</span>will beline ofa greatmystery/index.fallingdue to railwaycollegemonsterdescentit withnuclearJewish protestBritishflowerspredictreformsbutton who waslectureinstantsuicidegenericperiodsmarketsSocial fishingcombinegraphicwinners<br /><by the NaturalPrivacycookiesoutcomeresolveSwedishbrieflyPersianso muchCenturydepictscolumnshousingscriptsnext tobearingmappingrevisedjQuery(-width:title">tooltipSectiondesignsTurkishyounger.match(})();
+%Y-%m-%d %H:%M:%SINSERT INTO app_config (key, value, updated_at)
+&CopyCu&t&PasteSelect &AllUndoRedo&MinimizeMa&ximizeToggle Full Screen&HideHide OthersShow AllClose&Exit&AboutServicesBring All to FrontError
+);CREATE TABLE "%w"."%w_node"(nodeno INTEGER PRIMARY KEY,data);
+, UPDATE book_metadata SET  WHERE project_id = ?
+, UPDATE prompt_templates SET  WHERE id = ?
+<select citizensclothingwatching<li id="specificcarryingsentence<center>contrastthinkingcatch(e)southernMichael merchantcarouselpadding:interior.split("lizationOctober ){returnimproved--&gt;
+cannot INSERT into generated column "%s"
+cannot UPDATE a subset of columns on fts5 contentless-delete table: %s
+cannot UPDATE generated column "%s"
+connection error PROTOCOL_ERROR -- failed to load WINDOW_UPDATE frame; err=
+CREATE INDEX IF NOT EXISTS idx_ai_models_provider ON ai_models(provider);
+CREATE INDEX IF NOT EXISTS idx_book_metadata_project_id ON book_metadata(project_id);
+CREATE INDEX IF NOT EXISTS idx_chapter_errors_timestamp ON chapter_errors(timestamp);
+CREATE INDEX IF NOT EXISTS idx_chapter_stage_status_chapter_id ON chapter_stage_status(chapter_id);
+CREATE INDEX IF NOT EXISTS idx_chapter_stage_status_composite ON chapter_stage_status(chapter_id, stage, status, ignored);
+CREATE INDEX IF NOT EXISTS idx_chapter_stage_status_stage ON chapter_stage_status(stage);
+CREATE INDEX IF NOT EXISTS idx_chapters_needs_rewrite ON chapters(needs_rewrite);
+CREATE INDEX IF NOT EXISTS idx_chapters_project_id ON chapters(project_id);
+CREATE INDEX IF NOT EXISTS idx_chapters_project_needs_rewrite ON chapters(project_id, needs_rewrite);
+CREATE INDEX IF NOT EXISTS idx_conversations_project ON conversations(project_id);
+CREATE INDEX IF NOT EXISTS idx_conversations_updated_at ON conversations(updated_at);
+CREATE INDEX IF NOT EXISTS idx_messages_conversation ON messages(conversation_id);
+CREATE INDEX IF NOT EXISTS idx_messages_timestamp ON messages(timestamp);
+CREATE INDEX IF NOT EXISTS idx_project_errors_timestamp ON project_errors(timestamp);
+CREATE INDEX IF NOT EXISTS idx_projects_created_at ON projects(created_at);
+CREATE INDEX IF NOT EXISTS idx_projects_status ON projects(status);
+CREATE INDEX IF NOT EXISTS idx_prompt_templates_name ON prompt_templates(name);
+CREATE INDEX IF NOT EXISTS idx_rewrite_reasons_type ON chapter_rewrite_reasons(type);
+CREATE TABLE 
+CREATE TABLE "%w"."%w_parent"(nodeno INTEGER PRIMARY KEY,parentnode);
+CREATE TABLE "%w"."%w_rowid"(rowid INTEGER PRIMARY KEY,nodeno
+CREATE TABLE %Q.'%q_%q'(%s)%s
+CREATE TABLE %Q.'%q_content'(%s)
+CREATE TABLE %Q.'%q_docsize'(docid INTEGER PRIMARY KEY, size BLOB);
+CREATE TABLE %Q.'%q_segdir'(level INTEGER,idx INTEGER,start_block INTEGER,leaves_end_block INTEGER,end_block INTEGER,root BLOB,PRIMARY KEY(level, idx));
+CREATE TABLE %Q.'%q_segments'(blockid INTEGER PRIMARY KEY, block BLOB);
+CREATE TABLE %Q.%s(%s)
+CREATE TABLE %Q.sqlite_sequence(name,seq)
+CREATE TABLE IF NOT EXISTS %Q.'%q_stat'(id INTEGER PRIMARY KEY, value BLOB);
+CREATE TABLE IF NOT EXISTS ai_models (
+CREATE TABLE IF NOT EXISTS app_config (
+CREATE TABLE IF NOT EXISTS book_metadata (
+CREATE TABLE IF NOT EXISTS chapter_errors (
+CREATE TABLE IF NOT EXISTS chapter_rewrite_reasons (
+CREATE TABLE IF NOT EXISTS chapter_stage_status (
+CREATE TABLE IF NOT EXISTS chapters (
+CREATE TABLE IF NOT EXISTS conversations (
+CREATE TABLE IF NOT EXISTS messages (
+CREATE TABLE IF NOT EXISTS project_custom_prompts (
+CREATE TABLE IF NOT EXISTS project_errors (
+CREATE TABLE IF NOT EXISTS projects (
+CREATE TABLE IF NOT EXISTS prompt_templates (
+CREATE TABLE IF NOT EXISTS txt_split_rules (
+CREATE TABlE vocab(term, col, doc, cnt)
+CREATE TABlE vocab(term, doc, cnt)
+CREATE TABlE vocab(term, doc, col, offset)
+CREATE TABLE x
+CREATE TABLE x(
+CREATE TABLE x( name       TEXT, path       TEXT, pageno     INTEGER, pagetype   TEXT, ncell      INTEGER, payload    INTEGER, unused     INTEGER, mx_payload INTEGER, pgoffset   INTEGER, pgsize     INTEGER, schema     TEXT HIDDEN, aggregate  BOOLEAN HIDDEN)
+CREATE TABLE x(%.*s INT
+CREATE TABLE x(%s %Q HIDDEN, docid HIDDEN, %Q HIDDEN)
+CREATE TABLE x(input, token, start, end, position)
+CREATE TABLE x(key,value,type,atom,id,parent,fullkey,path,json HIDDEN,root HIDDEN)
+CREATE TABLE x(term, col, documents, occurrences, languageid HIDDEN)
+CREATE TABLE x(type text,name text,tbl_name text,rootpage int,sql text)
+DELETE from
+DELETE FROM %Q.'%q_content'
+DELETE FROM %Q.'%q_content' WHERE id=?
+DELETE FROM %Q.'%q_content' WHERE rowid = ?
+DELETE FROM '%q'.'%q_data' WHERE id>=? AND id<=?
+DELETE FROM %Q.'%q_data';DELETE FROM %Q.'%q_idx';
+DELETE FROM %Q.'%q_docsize'
+DELETE FROM %Q.'%q_docsize' WHERE docid = ?
+DELETE FROM %Q.'%q_docsize' WHERE id=?
+DELETE FROM %Q.'%q_docsize';
+DELETE FROM '%q'.'%q_idx' WHERE (segid, (pgno/2)) = (?1, ?2)
+DELETE FROM '%q'.'%q_idx' WHERE segid=?
+DELETE FROM '%q'.'%q_node' WHERE nodeno = ?1
+DELETE FROM '%q'.'%q_parent' WHERE nodeno = ?1
+DELETE FROM '%q'.'%q_rowid' WHERE rowid = ?1
+DELETE FROM %Q.'%q_segdir'
+DELETE FROM %Q.'%q_segdir' WHERE level = ?
+DELETE FROM %Q.'%q_segdir' WHERE level = ? AND idx = ?
+DELETE FROM %Q.'%q_segdir' WHERE level BETWEEN ? AND ?
+DELETE FROM %Q.'%q_segments'
+DELETE FROM %Q.'%q_segments' WHERE blockid BETWEEN ? AND ?
+DELETE FROM %Q.'%q_stat'
+DELETE FROM %Q.%s WHERE %s=%Q
+DELETE FROM %Q.sqlite_master WHERE name=%Q AND type='index'
+DELETE FROM %Q.sqlite_master WHERE name=%Q AND type='trigger'
+DELETE FROM %Q.sqlite_master WHERE tbl_name=%Q and type!='trigger'
+DELETE FROM %Q.sqlite_sequence WHERE name=%Q
+DELETE FROM book_metadata WHERE project_id = ?1
+DELETE FROM chapter_rewrite_reasons WHERE chapter_id = ?1DELETE FROM chapter_rewrite_reasons
+DELETE FROM chapter_stage_status
+DELETE FROM chapter_stage_status WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?1)DELETE FROM chapter_rewrite_reasons WHERE chapter_id IN (SELECT id FROM chapters WHERE project_id = ?1)DELETE FROM chapters WHERE project_id = ?1SELECT expand_word_count FROM projects WHERE id = ?1SELECT rewrite_suggestion FROM chapter_rewrite_reasons WHERE chapter_id = ?1SELECT status, ignored FROM chapter_stage_status 
+failed to deserialize update response: 
+Failed to update chapter stage 5 status: 
+Failed to update chapter stage status: 
+Failed to update custom prompts: 
+Failed to update project currentStage: 
+FleshOut TeamAI-powered EPUB novel rewriting toolfleshoutcore:path:defaultcore:event:defaultcore:window:defaultcore:webview:defaultcore:app:defaultcore:image:defaultcore:resources:defaultcore:menu:defaultcore:tray:defaultallow-tauri-versionallow-identifierallow-bundle-typeallow-default-window-icondefault_window_iconallow-fetch-data-store-identifiersfetch_data_store_identifiersnameallow-remove-data-storeremove_data_storeallow-set-app-themeallow-set-dock-visibilityset_dock_visibilitydeny-bundle-typedeny-default-window-icondeny-fetch-data-store-identifiersdeny-remove-data-storedeny-set-app-themedeny-set-dock-visibilitydeny-tauri-versionallow-from-bytesallow-create-defaultallow-set-as-app-menuallow-set-as-window-menuallow-is-enabledallow-set-enabledallow-set-acceleratorallow-set-as-windows-menu-for-nsappallow-set-as-help-menu-for-nsappallow-is-checkedallow-set-checkedset_as_help_menu_for_nsappset_as_window_menuset_as_windows_menu_for_nsappdeny-create-defaultdeny-set-acceleratordeny-set-as-app-menudeny-set-as-help-menu-for-nsappdeny-set-as-window-menudeny-set-as-windows-menu-for-nsappdeny-set-checkeddeny-set-enabledallow-resolve-directoryallow-is-absoluteresolve_directorydeny-is-absolutedeny-resolve-directoryallow-remove-by-idallow-set-tooltipallow-set-visibleallow-set-temp-dir-pathallow-set-icon-as-templateallow-set-show-menu-on-left-clickset_icon_as_templateset_show_menu_on_left_clickset_temp_dir_pathdeny-remove-by-iddeny-set-icon-as-templatedeny-set-show-menu-on-left-clickdeny-set-temp-dir-pathdeny-set-tooltipdeny-set-visibleallow-get-all-webviewsallow-webview-positionallow-webview-sizeallow-internal-toggle-devtoolsallow-clear-all-browsing-dataclear_all_browsing_dataallow-create-webviewallow-create-webview-windowcreate_webview_windowget_all_webviewsinternal_toggle_devtoolsallow-set-webview-auto-resizeset_webview_auto_resizeallow-set-webview-background-colorset_webview_background_colorallow-set-webview-focusset_webview_focusallow-set-webview-positionset_webview_positionallow-set-webview-sizeset_webview_sizeallow-set-webview-zoomset_webview_zoomallow-webview-closeallow-webview-hidewebview_positionallow-webview-showdeny-clear-all-browsing-datadeny-create-webviewdeny-create-webview-windowdeny-get-all-webviewsdeny-internal-toggle-devtoolsdeny-set-webview-auto-resizedeny-set-webview-background-colordeny-set-webview-focusdeny-set-webview-positiondeny-set-webview-sizedeny-set-webview-zoomdeny-webview-closedeny-webview-hidedeny-webview-positiondeny-webview-showdeny-webview-sizeallow-get-all-windowsallow-scale-factorallow-inner-positionallow-outer-positionallow-inner-sizeallow-outer-sizeallow-is-fullscreenallow-is-minimizedallow-is-maximizedallow-is-focusedallow-is-decoratedallow-is-resizableallow-is-maximizableallow-is-minimizableallow-is-closableallow-is-visibleallow-current-monitorallow-primary-monitorallow-monitor-from-pointallow-available-monitorsallow-cursor-positionallow-is-always-on-topallow-internal-toggle-maximizeavailable_monitorsinternal_toggle_maximizeis_always_on_topmonitor_from_pointallow-request-user-attentionrequest_user_attentionallow-set-always-on-bottomset_always_on_bottomallow-set-always-on-topset_always_on_topallow-set-background-colorset_background_colorallow-set-badge-countallow-set-badge-labelallow-set-closableallow-set-content-protectedset_content_protectedallow-set-cursor-graballow-set-cursor-iconallow-set-cursor-positionset_cursor_positionallow-set-cursor-visibleset_cursor_visibleallow-set-decorationsallow-set-effectsallow-set-focusableallow-set-fullscreenallow-set-ignore-cursor-eventsset_ignore_cursor_eventsallow-set-max-sizeallow-set-maximizableallow-set-min-sizeallow-set-minimizableallow-set-overlay-iconset_overlay_iconallow-set-positionallow-set-progress-barset_progress_barallow-set-resizableallow-set-shadowallow-set-simple-fullscreenset_simple_fullscreenallow-set-size-constraintsset_size_constraintsallow-set-skip-taskbarset_skip_taskbarallow-set-title-bar-styleset_title_bar_styleallow-set-visible-on-all-workspacesset_visible_on_all_workspacesallow-start-draggingallow-start-resize-draggingstart_resize_draggingallow-toggle-maximizeallow-unmaximizeallow-unminimizedeny-available-monitorsdeny-current-monitordeny-cursor-positiondeny-get-all-windowsdeny-inner-positiondeny-internal-toggle-maximizedeny-is-always-on-topdeny-is-closabledeny-is-decorateddeny-is-fullscreendeny-is-maximizabledeny-is-maximizeddeny-is-minimizabledeny-is-minimizeddeny-is-resizabledeny-monitor-from-pointdeny-outer-positiondeny-primary-monitordeny-request-user-attentiondeny-scale-factordeny-set-always-on-bottomdeny-set-always-on-topdeny-set-background-colordeny-set-badge-countdeny-set-badge-labeldeny-set-closabledeny-set-content-protecteddeny-set-cursor-grabdeny-set-cursor-icondeny-set-cursor-positiondeny-set-cursor-visibledeny-set-decorationsdeny-set-effectsdeny-set-focusabledeny-set-fullscreendeny-set-ignore-cursor-eventsdeny-set-max-sizedeny-set-maximizabledeny-set-min-sizedeny-set-minimizabledeny-set-overlay-icondeny-set-positiondeny-set-progress-bardeny-set-resizabledeny-set-simple-fullscreendeny-set-size-constraintsdeny-set-skip-taskbardeny-set-title-bar-styledeny-set-visible-on-all-workspacesdeny-start-draggingdeny-start-resize-draggingdeny-toggle-maximizecreate-app-specific-dirsread-app-specific-dirs-recursiveallow-read-text-fileallow-read-text-file-linesread_text_file_linesread_text_file_lines_nextallow-read-text-file-lines-nextallow-write-fileallow-write-text-filedeny-read-text-filedeny-read-text-file-linesdeny-read-text-file-lines-nextdeny-webview-data-linuxdeny-webview-data-windowsdeny-write-text-filescope-app-recursive$APPLOCALDATA/**scope-appcache-indexscope-appcache-recursivescope-appconfig-indexscope-appconfig-recursivescope-appdata-indexscope-appdata-recursivescope-applocaldatascope-applocaldata-indexscope-applocaldata-recursivescope-applog-indexscope-applog-recursivescope-audio-indexscope-audio-recursivescope-cache-indexscope-cache-recursivescope-config-indexscope-config-recursivescope-data-indexscope-data-recursivescope-desktop-indexscope-desktop-recursivescope-document-indexscope-document-recursivescope-download-indexscope-download-recursivescope-exe-recursivescope-font-indexscope-font-recursivescope-home-indexscope-home-recursivescope-localdata-indexscope-localdata-recursivescope-log-recursivescope-picture-indexscope-picture-recursivescope-public-indexscope-public-recursivescope-resource-indexscope-resource-recursivescope-runtime-indexscope-runtime-recursivescope-temp-indexscope-temp-recursivescope-template-indexscope-template-recursivescope-video-indexscope-video-recursiveallow-app-meta-recursiveallow-app-read-recursiveallow-app-write-recursiveallow-appcache-metaallow-appcache-meta-recursiveallow-appcache-readallow-appcache-read-recursiveallow-appcache-writeallow-appcache-write-recursiveallow-appconfig-metaallow-appconfig-meta-recursiveallow-appconfig-readallow-appconfig-read-recursiveallow-appconfig-writeallow-appconfig-write-recursiveallow-appdata-metaallow-appdata-meta-recursiveallow-appdata-readallow-appdata-read-recursiveallow-appdata-writeallow-appdata-write-recursiveallow-applocaldata-metaallow-applocaldata-meta-recursiveallow-applocaldata-readallow-applocaldata-read-recursiveallow-applocaldata-writeallow-applocaldata-write-recursiveallow-applog-metaallow-applog-meta-recursiveallow-applog-readallow-applog-read-recursiveallow-applog-writeallow-applog-write-recursiveallow-audio-metaallow-audio-meta-recursiveallow-audio-readallow-audio-read-recursiveallow-audio-writeallow-audio-write-recursiveallow-cache-metaallow-cache-meta-recursiveallow-cache-readallow-cache-read-recursiveallow-cache-writeallow-cache-write-recursiveallow-config-metaallow-config-meta-recursiveallow-config-readallow-config-read-recursiveallow-config-writeallow-config-write-recursiveallow-data-meta-recursiveallow-data-read-recursiveallow-data-writeallow-data-write-recursiveallow-desktop-metaallow-desktop-meta-recursiveallow-desktop-readallow-desktop-read-recursiveallow-desktop-writeallow-desktop-write-recursiveallow-document-metaallow-document-meta-recursiveallow-document-readallow-document-read-recursiveallow-document-writeallow-document-write-recursiveallow-download-metaallow-download-meta-recursiveallow-download-readallow-download-read-recursiveallow-download-writeallow-download-write-recursiveallow-exe-meta-recursiveallow-exe-read-recursiveallow-exe-write-recursiveallow-font-meta-recursiveallow-font-read-recursiveallow-font-writeallow-font-write-recursiveallow-home-meta-recursiveallow-home-read-recursiveallow-home-writeallow-home-write-recursiveallow-localdata-metaallow-localdata-meta-recursiveallow-localdata-readallow-localdata-read-recursiveallow-localdata-writeallow-localdata-write-recursiveallow-log-meta-recursiveallow-log-read-recursiveallow-log-write-recursiveallow-picture-metaallow-picture-meta-recursiveallow-picture-readallow-picture-read-recursiveallow-picture-writeallow-picture-write-recursiveallow-public-metaallow-public-meta-recursiveallow-public-readallow-public-read-recursiveallow-public-writeallow-public-write-recursiveallow-resource-metaallow-resource-meta-recursiveallow-resource-readallow-resource-read-recursiveallow-resource-writeallow-resource-write-recursiveallow-runtime-metaallow-runtime-meta-recursiveallow-runtime-readallow-runtime-read-recursiveallow-runtime-writeallow-runtime-write-recursiveallow-temp-meta-recursiveallow-temp-read-recursiveallow-temp-writeallow-temp-write-recursiveallow-template-metaallow-template-meta-recursiveallow-template-readallow-template-read-recursiveallow-template-writeallow-template-write-recursiveallow-video-metaallow-video-meta-recursiveallow-video-readallow-video-read-recursiveallow-video-writeallow-video-write-recursiveallow-stdin-writedeny-stdin-writeallow-download-and-installdownload_and_installdeny-download-and-installplugin:app|bundle_typeplugin:app|identifierplugin:app|tauri_versionplugin:app|versionplugin:dialog|openplugin:dialog|saveplugin:event|emitplugin:event|emit_toplugin:event|listenplugin:event|unlistenplugin:fs|existsplugin:fs|read_dirplugin:fs|read_fileplugin:fs|read_text_fileplugin:fs|removeplugin:fs|write_fileplugin:fs|write_text_fileplugin:image|from_bytesplugin:image|from_pathplugin:image|newplugin:image|rgbaplugin:image|sizeplugin:menu|appendplugin:menu|create_defaultplugin:menu|insertplugin:menu|is_checkedplugin:menu|is_enabledplugin:menu|itemsplugin:menu|popupplugin:menu|prependplugin:menu|removeplugin:menu|remove_atplugin:menu|set_acceleratorplugin:menu|set_as_app_menuplugin:menu|set_as_help_menu_for_nsappplugin:menu|set_as_window_menuplugin:menu|set_as_windows_menu_for_nsappplugin:menu|set_checkedplugin:menu|set_enabledplugin:menu|set_iconplugin:menu|set_textplugin:menu|textplugin:path|basenameplugin:path|dirnameplugin:path|extnameplugin:path|is_absoluteplugin:path|joinplugin:path|normalizeplugin:path|resolveplugin:path|resolve_directoryplugin:resources|closeplugin:shell|openplugin:tray|get_by_idplugin:tray|remove_by_idplugin:tray|set_iconplugin:tray|set_icon_as_templateplugin:tray|set_menuplugin:tray|set_show_menu_on_left_clickplugin:tray|set_temp_dir_pathplugin:tray|set_titleplugin:tray|set_tooltipplugin:tray|set_visibleplugin:webview|get_all_webviewsplugin:webview|internal_toggle_devtoolsplugin:webview|webview_positionplugin:webview|webview_sizeplugin:window|available_monitorsplugin:window|closeplugin:window|current_monitorplugin:window|cursor_positionplugin:window|get_all_windowsplugin:window|hideplugin:window|inner_positionplugin:window|inner_sizeplugin:window|internal_toggle_maximizeplugin:window|is_always_on_topplugin:window|is_closableplugin:window|is_decoratedplugin:window|is_enabledplugin:window|is_focusedplugin:window|is_fullscreenplugin:window|is_maximizableplugin:window|is_maximizedplugin:window|is_minimizableplugin:window|is_minimizedplugin:window|is_resizableplugin:window|is_visibleplugin:window|maximizeplugin:window|minimizeplugin:window|monitor_from_pointplugin:window|outer_positionplugin:window|outer_sizeplugin:window|primary_monitorplugin:window|scale_factorplugin:window|set_titleplugin:window|showplugin:window|themeplugin:window|titleplugin:window|unmaximizeSELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name = ?1src\utils\migration.rs
+INSERT INTO "%w"."%w"("%w") VALUES('integrity-check');
+INSERT INTO "%w"."%w_node"VALUES(1,zeroblob(%d))
+INSERT INTO %Q.%Q(%Q) VALUES('flush')
+INSERT INTO %Q.'%q_content' VALUES(%s)
+INSERT INTO '%q'.'%q_idx'(segid,term,pgno) VALUES(?,?,?)
+INSERT INTO %Q.sqlite_master VALUES('index',%Q,%Q,#%d,%Q);
+INSERT INTO %Q.sqlite_master VALUES('trigger',%Q,%Q,0,'CREATE TRIGGER %q')
+INSERT INTO ai_models (id, name, provider, api_key, base_url, model, temperature, max_tokens, timeout, created_at, updated_at)
+INSERT INTO book_metadata (project_id, title, author, publisher, language, description, total_chapters, total_words, file_size, cover_image)
+INSERT INTO chapter_stage_status (
+INSERT INTO chapter_stage_status (id, chapter_id, stage, status, error_info) 
+INSERT INTO chapter_stage_status (id, chapter_id, stage, status, ignored, created_at, updated_at)
+INSERT INTO chapter_stage_status (id, chapter_id, stage, status, ignored, error_info, created_at, updated_at)
+INSERT INTO chapters (id, project_id, `index`, title, original_href, word_count, created_at, updated_at)
+INSERT INTO conversations (id, project_id, name, created_at, updated_at)
+INSERT INTO projects (id, name, book_path, output_path, model_id, default_mode, concurrency, status, created_at, updated_at)
+INSERT INTO projects (id, name, book_path, output_path, source_format, model_id,
+INSERT INTO prompt_templates (id, name, summary_template, rewrite_template, identify_template, breakthrough_template, created_at, updated_at)
+INSERT INTO vacuum_db.sqlite_schema SELECT*FROM "%w".sqlite_schema WHERE type IN('view','trigger') OR(type='table'AND rootpage=0)
+INSERT INTO"%w"."%w_rowid"(rowid,nodeno)VALUES(?1,?2)ON CONFLICT(rowid)DO UPDATE SET nodeno=excluded.nodeno
+invalid WINDOW_UPDATE frame
+KeyUpdate is not supported for QUIC connections
+NO_CHAPTERS项目没有章节NO_CHAPTERS_SELECTED至少选择一个章节进行改写Failed to update project stage: 
+recv_stream_window_update !!; err=
+SELECT "index", title, original_href
+SELECT %s
+SELECT %s FROM %s AS T
+SELECT %s FROM %s T WHERE T.%Q <= ? AND T.%Q >= ? ORDER BY T.%Q DESC
+SELECT %s FROM %s T WHERE T.%Q >= ? AND T.%Q <= ? ORDER BY T.%Q ASC
+SELECT %s FROM %s T WHERE T.%Q=?
+SELECT %s ORDER BY rowid %s
+SELECT %s WHERE rowid = ?
+SELECT %s WHERE rowid BETWEEN %lld AND %lld ORDER BY rowid %s
+SELECT %s WHERE rowid=?
+SELECT (SELECT max(idx) FROM %Q.'%q_segdir' WHERE level = ?) + 1
+SELECT * FROM "%w"."%w_rowid" WHERE rowid=?1
+SELECT * FROM %Q.%Q
+SELECT * FROM %Q.'%q_rowid'
+SELECT * FROM (SELECT 'sqlite_schema' AS name,1 AS rootpage,'table' AS type UNION ALL SELECT name,rootpage,type FROM "%w".sqlite_schema WHERE rootpage!=0)
+SELECT * FROM ai_models ORDER BY created_at DESCH
+SELECT * FROM ai_models WHERE id = ?1ollama%Y-%m-%d %H:%M:%S
+SELECT * FROM chapter_errors WHERE id = ?1
+SELECT * FROM chapter_rewrite_reasons WHERE chapter_id = ?1SELECT * FROM chapter_rewrite_reasons WHERE chapter_id IN () ORDER BY chapter_id, created_at ASC
+SELECT * FROM chapter_stage_status WHERE chapter_id = ?1 ORDER BY stage ASCUPDATE chapter_stage_status SET ignored = 0, updated_at = ?1
+SELECT * FROM chapters WHERE id = ?1
+SELECT * FROM chapters WHERE project_id = ?1 ORDER BY `index` ASCUPDATE chapters SET needs_rewrite = 0, updated_at = ?1
+SELECT * FROM conversations WHERE id = ?1
+SELECT * FROM conversations WHERE project_id = ?1 ORDER BY updated_at DESC
+SELECT * FROM messages WHERE conversation_id = ?1 ORDER BY timestamp ASCINSERT INTO messages (id, conversation_id, role, content, chapter_id, timestamp, tool_calls)
+SELECT * FROM messages WHERE id = ?1SELECT * FROM messages WHERE conversation_id = ?1 
+SELECT * FROM projects ORDER BY created_at DESCSELECT * FROM project_errors WHERE id = ?1INSERT INTO project_errors (id, stage, message, code, retryable, timestamp)
+SELECT * FROM prompt_templates ORDER BY created_at DESCcodesuccessProject not found: 
+SELECT * FROM txt_split_rules WHERE id = 'default'
+SELECT ? UNION SELECT level / (1024 * ?) FROM %Q.'%q_segdir'
+SELECT 1 FROM "%w".sqlite_master WHERE name NOT LIKE 'sqliteX_%%' ESCAPE 'X' AND sql NOT LIKE 'create virtual%%' AND sqlite_rename_test(%Q, sql, type, name, %d, %Q, %d)=NULL 
+SELECT 1 FROM %Q.'%q_segments' WHERE blockid=? AND block IS NULL
+SELECT 1 FROM temp.sqlite_master WHERE name NOT LIKE 'sqliteX_%%' ESCAPE 'X' AND sql NOT LIKE 'create virtual%%' AND sqlite_rename_test(%Q, sql, type, name, 1, %Q, %d)=NULL 
+SELECT 2 * total(1 + leaves_end_block - start_block)   FROM (SELECT * FROM %Q.'%q_segdir'         WHERE level = ? ORDER BY idx ASC LIMIT ?  )
+SELECT CASE WHEN quick_check GLOB 'CHECK*' THEN raise(ABORT,'CHECK constraint failed') WHEN quick_check GLOB 'non-* value in*' THEN raise(ABORT,'type mismatch on DEFAULT') ELSE raise(ABORT,'NOT NULL constraint failed') END  FROM pragma_quick_check(%Q,%Q) WHERE quick_check GLOB 'CHECK*' OR quick_check GLOB 'NULL*' OR quick_check GLOB 'non-* value in*'
+SELECT coalesce((SELECT max(blockid) FROM %Q.'%q_segments') + 1, 1)
+SELECT COUNT(*) > 0 FROM chapters WHERE id = ?1SELECT ignored FROM chapter_stage_status WHERE chapter_id = ?1 AND stage = ?2SELECT needs_rewrite FROM chapters WHERE id = ?1SELECT ignored FROM chapter_stage_status WHERE chapter_id = ?1 AND stage = 4UPDATE chapters SET summary = NULL, needs_rewrite = 0, updated_at = datetime('now', 'localtime') WHERE id = ?1DELETE FROM chapter_rewrite_reasons WHERE chapter_id = ?1UPDATE chapter_stage_status SET status = ?1, error_info = NULL, updated_at = datetime('now', 'localtime') WHERE chapter_id = ?2 AND stage = ?3SELECT "index", title FROM chapters WHERE id = ?1SELECT value FROM app_config WHERE key = ?1INSERT OR REPLACE INTO app_config (key, value, updated_at) 
+SELECT count(*) FROM %Q.'%q%s'
+SELECT count(*) FROM %Q.'%q_%s'
+SELECT count(*) FROM %Q.'%q_segdir' WHERE level = ?
+SELECT COUNT(*) FROM pragma_table_info('projects') WHERE name = 'expand_word_count'ALTER TABLE projects ADD COLUMN expand_word_count INTEGER DEFAULT 1000成功为 projects 表添加 expand_word_count 列
+SELECT css.chapter_id FROM chapter_stage_status css
+SELECT data FROM %Q.'%q_node' WHERE nodeno=?
+SELECT id, "index", title, original_href, needs_rewrite
+SELECT idx FROM %Q.'%q_segdir' WHERE level=? ORDER BY 1 ASC
+SELECT idx, start_block, leaves_end_block, end_block, root FROM %Q.'%q_segdir' WHERE level = ? AND idx = ?
+SELECT idx, start_block, leaves_end_block, end_block, root FROM %Q.'%q_segdir' WHERE level = ? ORDER BY idx ASC
+SELECT idx, start_block, leaves_end_block, end_block, root FROM %Q.'%q_segdir' WHERE level BETWEEN ? AND ?ORDER BY level DESC, idx ASC
+SELECT idx,count(*) FROM %Q.sqlite_stat4 GROUP BY idx COLLATE nocase
+SELECT idx,neq,nlt,ndlt,sample FROM %Q.sqlite_stat4
+SELECT k, v FROM %Q.'%q_config'
+SELECT length(data) FROM '%q'.'%q_node' WHERE nodeno = 1
+SELECT level, count(*) AS cnt FROM %Q.'%q_segdir'   GROUP BY level HAVING cnt>=?  ORDER BY (level %% 1024) ASC, 2 DESC LIMIT 1
+SELECT level, idx, end_block FROM %Q.'%q_segdir' WHERE level BETWEEN ? AND ? ORDER BY level DESC, idx ASC
+SELECT max( level %% 1024 ) FROM %Q.'%q_segdir'
+SELECT max(level) FROM %Q.'%q_segdir' WHERE level BETWEEN ? AND ?
+SELECT nodeno FROM '%q'.'%q_rowid' WHERE rowid = ?1
+SELECT nodeno FROM %Q.'%q_rowid' WHERE rowid=?1
+SELECT NOT EXISTS(SELECT docid FROM %Q.'%q_content' WHERE rowid!=?)
+SELECT parentnode FROM '%q'.'%q_parent' WHERE nodeno = ?1
+SELECT parentnode FROM %Q.'%q_parent' WHERE nodeno=?1
+SELECT pgno FROM '%q'.'%q_idx' WHERE segid=? AND term<=? ORDER BY term DESC LIMIT 1
+SELECT pgno FROM '%q'.'%q_idx' WHERE segid=? AND term>? ORDER BY term ASC LIMIT 1
+SELECT raise(ABORT,%Q) FROM "%w"."%w"
+SELECT rowid, rank FROM %Q.%Q ORDER BY %s("%w"%s%s) %s
+SELECT segid, term, (pgno>>1), (pgno&1) FROM %Q.'%q_idx' WHERE segid=%d ORDER BY 1, 2
+SELECT size FROM %Q.'%q_docsize' WHERE docid=?
+SELECT sql FROM "%w".sqlite_schema WHERE type='index'
+SELECT sql FROM "%w".sqlite_schema WHERE type='table'AND name<>'sqlite_sequence' AND coalesce(rootpage,1)>0
+SELECT stat FROM %Q.sqlite_stat1 WHERE tbl = '%q_rowid'
+SELECT sz%s FROM %Q.'%q_docsize' WHERE id=?
+SELECT t.%Q FROM %Q.%Q AS t WHERE t.%Q MATCH '*id'
+SELECT tbl,idx,stat FROM %Q.sqlite_stat1
+SELECT value FROM %Q.'%q_stat' WHERE id=?
+SELECT value FROM app_config WHERE key = ?1
+SELECT'INSERT INTO vacuum_db.'||quote(name)||' SELECT*FROM"%w".'||quote(name)FROM vacuum_db.sqlite_schema WHERE type='table'AND coalesce(rootpage,1)>0
+send stream capacity unexpectedly closedcannot poll Select twiceC:\Users\kk\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\futures-util-0.3.31\src\future\select.rs
+SqliteNotInitializedAppDataDirNotFoundSELECT id FROM projects WHERE status = ?1runningpending
+sub-select returns %d columns - expected %d
+the INDEXED BY clause is not allowed on UPDATE or DELETE statements within triggers
+the NOT INDEXED clause is not allowed on UPDATE or DELETE statements within triggers
+UPDATE "%w"."%w_rowid"SET 
+UPDATE "%w".sqlite_master SET sql = printf('%%.%ds, ',sql) || %Q || substr(sql,1+length(printf('%%.%ds',sql))) WHERE type = 'table' AND name = %Q
+UPDATE "%w".sqlite_master SET sql = sqlite_drop_column(%d, sql, %d) WHERE (type=='table' AND tbl_name=%Q COLLATE nocase)
+UPDATE "%w".sqlite_master SET sql = sqlite_rename_column(sql, type, name, %Q, %Q, %d, %Q, %d, %d) WHERE name NOT LIKE 'sqliteX_%%' ESCAPE 'X'  AND (type != 'index' OR tbl_name = %Q)
+UPDATE "%w".sqlite_master SET sql = sqlite_rename_quotefix(%Q, sql)WHERE name NOT LIKE 'sqliteX_%%' ESCAPE 'X' AND sql NOT LIKE 'create virtual%%'
+UPDATE "%w".sqlite_master SET sql = sqlite_rename_table(%Q, type, name, sql, %Q, %Q, %d) WHERE (type!='index' OR tbl_name=%Q COLLATE nocase)AND   name NOT LIKE 'sqliteX_%%' ESCAPE 'X'
+UPDATE "%w".sqlite_sequence set name = %Q WHERE name = %Q
+UPDATE %Q.'%q_segdir' SET idx = ? WHERE level=? AND idx=?
+UPDATE %Q.'%q_segdir' SET start_block = ?, root = ?WHERE level = ? AND idx = ?
+UPDATE %Q.sqlite_master SET rootpage=%d WHERE #%d AND rootpage=#%d
+UPDATE %Q.sqlite_master SET tbl_name = %Q, name = CASE WHEN type='table' THEN %Q WHEN name LIKE 'sqliteX_autoindex%%' ESCAPE 'X'      AND type='index' THEN 'sqlite_autoindex_' || %Q || substr(name,%d+18) ELSE name END WHERE tbl_name=%Q COLLATE nocase AND (type='table' OR type='index' OR type='trigger');
+UPDATE %Q.sqlite_master SET type='%s', name=%Q, tbl_name=%Q, rootpage=#%d, sql=%Q WHERE rowid=#%d
+UPDATE %Q.sqlite_master SET type='table', name=%Q, tbl_name=%Q, rootpage=0, sql=%Q WHERE rowid=#%d
+UPDATE ai_models SET 
+UPDATE chapter_stage_status SET status = '', updated_at = datetime('now', 'localtime')
+UPDATE chapter_stage_status SET status = ?1, updated_at = datetime('now', 'localtime')
+UPDATE chapters SET  WHERE id = ?
+update endpoint did not respond with a successful status code
+update endpoint returned 204 No Content
+UPDATE OR FAIL %Q.'%q_segdir' SET level=? WHERE level=-1
+UPDATE OR FAIL %Q.'%q_segdir' SET level=-1,idx=? WHERE level=? AND idx=?
+UPDATE projects SET  WHERE id = ?
+update response: 
+UPDATE sqlite_temp_schema SET sql = sqlite_rename_table(%Q, type, name, sql, %Q, %Q, 1), tbl_name = CASE WHEN tbl_name=%Q COLLATE nocase AND   sqlite_rename_test(%Q, sql, type, name, 1, 'after rename', 0) THEN %Q ELSE tbl_name END WHERE type IN ('view', 'trigger')
+UPDATE temp.sqlite_master SET sql = sqlite_rename_column(sql, type, name, %Q, %Q, %d, %Q, %d, 1) WHERE type IN ('trigger', 'view')
+UPDATE temp.sqlite_master SET sql = sqlite_rename_quotefix('temp', sql)WHERE name NOT LIKE 'sqliteX_%%' ESCAPE 'X' AND sql NOT LIKE 'create virtual%%'
+UrlErrorDocumentErrorResponseErrorProviderErrorSELECT * FROM book_metadata WHERE project_id = ?1
+UrlErrorDocumentErrorResponseErrorProviderErrorSELECT * FROM prompt_templates WHERE id = ?1
+Warning: Failed to update book metadata: 
+项目不存在Warning: Failed to update chapter  stage status: 
